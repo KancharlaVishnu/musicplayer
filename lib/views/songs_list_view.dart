@@ -9,15 +9,20 @@ class SongsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: ListView.builder(
+      body: ListView.builder(padding: EdgeInsets.only(top: 100),
         itemCount: DataManager.songsList().length,
         itemBuilder: (BuildContext context, int index) {
           var model = DataManager.songsList()[index];
-          return songView(
-            model.name,
-            model.thumbnailUrl,
-            context,
-            model.artistInfo,
+          return Column(
+            children: [
+              songView(
+                model.name,
+                model.thumbnailUrl,
+                context,
+                model.artistInfo,
+              ),
+              SizedBox(height: 10,)
+            ],
           );
         },
       ),

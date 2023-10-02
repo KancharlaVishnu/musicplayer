@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:musicplayer/views/songs_list_view.dart';
 
 import 'views/music_player_view.dart';
@@ -9,12 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       initialRoute: '/SongsListView',
-      routes: {
-        '/SongsListView':(context)=> SongsListView(),
-        '/MusicPlayerView':(context)=> MusicPlayerView(),
-      },
+
+      getPages: [
+        GetPage(name:  '/SongsListView', page: ()=>SongsListView()),
+        GetPage(name:  '/MusicPlayerView', page: ()=>MusicPlayerView())
+      ],
       title: 'Flutter Demo',
       theme: ThemeData(
         //

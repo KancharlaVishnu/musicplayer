@@ -39,6 +39,7 @@ dependencies:
   just_audio: ^0.9.34
   google_fonts: ^6.1.0
   flutter_xlider: ^3.5.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
