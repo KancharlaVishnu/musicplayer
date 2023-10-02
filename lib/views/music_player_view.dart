@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_xlider/flutter_xlider.dart';
+import 'package:musicplayer/model/song_model.dart';
 
 class MusicPlayerView extends StatefulWidget {
   const MusicPlayerView({Key? key}) : super(key: key);
@@ -12,16 +14,16 @@ class MusicPlayerView extends StatefulWidget {
 
 class _MusicPlayerViewState extends State<MusicPlayerView> {
   double _seekValue = 0.0; // Initial value
+  var model = Get.arguments as SongModel;
   final player = AudioPlayer()
-    ..setUrl(
-        'https://firebasestorage.googleapis.com/v0/b/musicplayer-15761.appspot.com/o/Hukum.mp3?alt=media&token=37aa5e05-61e1-4ed9-84cf-6d1c49fa5937')
     ..setVolume(1);
   bool isplaying = false;
 
   @override
   void initState() {
     super.initState();
-
+    player.setUrl('${model.songUrl}');
+    player.play();
     player.playerStateStream.listen((event) {
       setState(() {
         isplaying = event.playing;
@@ -62,7 +64,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                   height: 399,
                   width: double.infinity,
                   child: Image.network(
-                    "https://www.hindustantimes.com/ht-img/img/2023/08/20/1600x900/jailer_500_crore_box_office_gross_1692501586703_1692501594990.jpg",
+                    model.thumbnailUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -74,7 +76,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                     padding: EdgeInsets.only(left: 30),
                     width: double.infinity,
                     child: Text(
-                      'HUKUM',
+                      '${model.name}',
                       style:
                           GoogleFonts.mooli(color: Colors.white, fontSize: 26),
                     ),
@@ -82,7 +84,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                   Padding(
                     padding: EdgeInsets.only(left: 30),
                     child: Text(
-                      'artistInfo',
+                      '${model.artistInfo}',
                       style: TextStyle(color: Colors.white60, fontSize: 20),
                     ),
                   )

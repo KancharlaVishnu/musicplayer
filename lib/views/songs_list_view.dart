@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:musicplayer/manager/data_manager.dart';
 import 'package:musicplayer/model/song_model.dart';
 
@@ -9,19 +10,20 @@ class SongsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: ListView.builder(padding: EdgeInsets.only(top: 100),
+      body: ListView.builder(
+        padding: EdgeInsets.only(top: 100),
         itemCount: DataManager.songsList().length,
         itemBuilder: (BuildContext context, int index) {
           var model = DataManager.songsList()[index];
           return Column(
             children: [
               songView(
-                model.name,
-                model.thumbnailUrl,
+                model,
                 context,
-                model.artistInfo,
               ),
-              SizedBox(height: 10,)
+              SizedBox(
+                height: 10,
+              )
             ],
           );
         },
@@ -29,11 +31,13 @@ class SongsListView extends StatelessWidget {
     );
   }
 
-  Widget songView(String name, String thumbnailUrl, BuildContext context,
-      String artistInfo) {
+  Widget songView(
+    SongModel model,
+    BuildContext context,
+  ) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/MusicPlayerView');
+        Get.toNamed('/MusicPlayerView', arguments: model);
       },
       child: Container(
           height: 60,
@@ -50,7 +54,7 @@ class SongsListView extends StatelessWidget {
               ),
               ClipOval(
                 child: Image.network(
-                  '$thumbnailUrl',
+                  '${model.thumbnailUrl}',
                   height: 60,
                   width: 60,
                   fit: BoxFit.cover,
@@ -63,11 +67,11 @@ class SongsListView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '$name',
+                    '${model.name}',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   Text(
-                    '$artistInfo',
+                    '${model.artistInfo}',
                     style: TextStyle(color: Colors.white54),
                   )
                 ],
