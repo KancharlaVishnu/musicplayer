@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:musicplayer/songs_list_view.dart';
+import 'package:musicplayer/views/songs_list_view.dart';
 
-import 'music_player_view.dart';
+import 'views/music_player_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

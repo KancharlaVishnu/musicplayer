@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:musicplayer/song_model.dart';
+import 'package:musicplayer/model/song_model.dart';
 
 class SongsListView extends StatelessWidget {
   const SongsListView({Key? key}) : super(key: key);
