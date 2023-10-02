@@ -88,17 +88,17 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                   )
                 ],
               ),
-              FlutterSlider(
-                values: [_seekValue],
-                max: 100.0, // Set the maximum value of the seek bar
-                min: 0.0, // Set the minimum value of the seek bar
-                onDragging: (handlerIndex, lowerValue, upperValue) {
-                  setState(() {
-                    _seekValue = lowerValue;
-                    // Update your music player's position based on _seekValue
-                  });
-                },
-              ),
+              // FlutterSlider(
+              //   values: [_seekValue],
+              //   max: 100.0, // Set the maximum value of the seek bar
+              //   min: 0.0, // Set the minimum value of the seek bar
+              //   onDragging: (handlerIndex, lowerValue, upperValue) {
+              //     setState(() {
+              //       _seekValue = lowerValue;
+              //       // Update your music player's position based on _seekValue
+              //     });
+              //   },
+              // ),
               SizedBox(
                 height: 5,
               ),
